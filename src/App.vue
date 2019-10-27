@@ -15,7 +15,7 @@
           <router-link :to="{name: 'login'}">Login</router-link>
         </h3>
         <h3 v-if="!loggedIn" class="main__link">
-          <router-link>Register</router-link>
+          <router-link to="{name: 'register'}">Register</router-link>
         </h3>
         <h3 v-show="loggedIn" class="main__link">
           <router-link :to="{name: 'logout'}">Logout</router-link>

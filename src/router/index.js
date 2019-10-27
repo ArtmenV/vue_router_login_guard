@@ -2,9 +2,10 @@ import Vue from "vue";
 import store from "../store";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../components/Auth/index.vue";
+import Login from "../components/Auth/Login/index.vue";
 import Logout from "../components/Logout/index.vue";
 import About from "../components/About/index.vue";
+import Register from "../components/Auth/Register/index.vue";
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,12 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+    meta: { requiresVisitor: true }
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
     meta: { requiresVisitor: true }
   },
   {
