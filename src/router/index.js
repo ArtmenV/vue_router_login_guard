@@ -53,15 +53,19 @@ router.beforeEach((to, from, next) => {
       next({
         name: "login"
       });
+    } else {
+      next();
     }
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
     if (store.getters.loggedIn) {
       next({
-        name: "home"
+        name: "todo"
       });
     } else {
       next();
     }
+  } else {
+    next();
   }
 });
 
