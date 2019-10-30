@@ -1,7 +1,7 @@
 <template>
   <div @click="getTime">
     <h1>Slim Shady about</h1>
-    <h1>{{ data }}</h1>
+    <h1 v-for="(item, index) in data.items['insert_time']" :key="index">{{ item }}</h1>
   </div>
 </template>
 
@@ -9,27 +9,55 @@
 export default {
   data() {
     return {
-      data: ""
+      data: {
+        totalItems: 0,
+        pageCount: 0,
+        items: [
+          {
+            operator: "string",
+            command: "string",
+            value: 0,
+            status: "string",
+            comment: "string",
+            insert_time: "2012-01-26T13:51:50.417-07:00"
+          },
+          {
+            operator: "string",
+            command: "string",
+            value: 0,
+            status: "string",
+            comment: "string",
+            insert_time: "2017-01-26T13:51:50.417-07:00"
+          },
+          {
+            operator: "string",
+            command: "string",
+            value: 0,
+            status: "string",
+            comment: "string",
+            insert_time: "2018-01-26T13:51:50.417-07:00"
+          }
+        ]
+      }
     };
   },
   computed: {
     getTime() {
-      var options = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric"
-      };
-      var today = new Date();
-      this.data = today.toLocaleDateString("ru", options);
-      console.log(this.data);
+      return (this.data = this.data.items.map(item => ({
+        ...item,
+        insert_time: new Date(item.insert_time)
+          .toISOString()
+          .replace(/T/, " ")
+          .replace(/\..+/, "")
+      })));
+      const today = new Date();
+      // const das = new Date(Date.parse(item.insert_time)).toUTCString()
+      return console.log(this.today);
       // const today = new Date().toDateString();
 
       // console.log(today);
 
-      // var date =
+      // const date =
       //   today.getFullYear() +
       //   "-" +
       //   (today.getMonth() + 1) +
